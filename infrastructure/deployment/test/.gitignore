@@ -1,0 +1,2 @@
+# use a backend instead of git ideally. if you are a single developer, it should be ok and remove this .gitingnore
+terraform.*

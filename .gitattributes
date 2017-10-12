@@ -1,0 +1,9 @@
+/test export-ignore
+/infrastructure export-ignore
+/build expport-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.terraform export-ignore
+/README.md export-ignore
+/main.tf export-ignore
+/yarn.lock export-ignore

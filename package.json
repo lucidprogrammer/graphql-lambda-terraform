@@ -1,0 +1,29 @@
+{
+  "name": "graphql-lambda-terraform",
+  "version": "1.0.0",
+  "description": "Example graphql lambda application with terraform IAC(infrastructure as code)",
+  "main": "graphql_server.js",
+  "author": "Lucid Programmer<lucidprogrammer@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "graphql-server": "node graphql_server.js",
+    "production-install": "yarn install --modules-folder=./build/node_modules --production=true",
+    "zip-graphql": "yarn run production-install && git archive -9 -o ./build/graphql.zip HEAD:src/graphql && cd build && zip -ur ./graphql.zip . -i \"node_modules/*\"",
+    "zip": "yarn run zip-graphql",
+    "test-deploy-plan": "TF_VAR_deploy_stage=test yarn run zip && terraform plan -out=./infrastructure/deployment/test/terraform.tfstate",
+    "test-deploy": "TF_VAR_deploy_stage=test yarn run test-deploy-plan && terraform apply ./infrastructure/deployment/test/terraform.tfstate"
+  },
+  "dependencies": {
+    "aws-serverless-express": "^3.0.2",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
+    "graphql": "^0.11.7"
+  },
+  "engines": {
+    "node": ">= 6.10.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2"
+  }
+}
