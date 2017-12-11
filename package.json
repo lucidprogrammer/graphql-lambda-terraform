@@ -10,7 +10,7 @@
     "production-install": "yarn install --modules-folder=./build/node_modules --production=true",
     "zip-graphql": "yarn run production-install && git archive -9 -o ./build/graphql.zip HEAD:src/graphql && cd build && zip -ur ./graphql.zip . -i \"node_modules/*\"",
     "zip": "yarn run zip-graphql",
-    "test-deploy-plan": "TF_VAR_deploy_stage=test yarn run zip && terraform plan -out=./infrastructure/deployment/test/terraform.tfstate",
+    "test-deploy-plan": "yarn run zip && TF_VAR_deploy_stage=test terraform plan -out=./infrastructure/deployment/test/terraform.tfstate",
     "test-deploy": "TF_VAR_deploy_stage=test yarn run test-deploy-plan && terraform apply ./infrastructure/deployment/test/terraform.tfstate"
   },
   "dependencies": {
